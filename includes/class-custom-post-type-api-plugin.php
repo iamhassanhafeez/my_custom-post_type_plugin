@@ -8,7 +8,13 @@ class CustomPostTypeAPI{
         $labels = [
             'name'=>'Books',
             'singular_name'=>'Book',
-            
+            'add_new'=>'Add New Book',
+            'edit_item'=>'Edit Book',
+            'new_item'=>'New Book',
+            'view_item'=>'View Book',
+            'all_items'=>'All Books',
+            'search_items'=>'Search Books',
+            'not found'=>'No books found'
         ];
 
     }
