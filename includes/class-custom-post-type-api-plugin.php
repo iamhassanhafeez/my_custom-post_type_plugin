@@ -17,6 +17,18 @@ class CustomPostTypeAPI{
             'not found'=>'No books found'
         ];
 
+        $args = [
+            'labels'=>$labels,
+            'public'=>true,
+            'has_archive'=> true,
+            'suports'=>['title', 'editor', 'thumbnail'],
+            'show_in_rest'=>true,
+            'rest_base'=>'books',
+            'menu_icon'=>'dashicons-book'
+        ];
+
+        register_post_type('books', $args);
+
     }
 }
 ?>
