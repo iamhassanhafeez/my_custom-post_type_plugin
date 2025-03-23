@@ -40,7 +40,7 @@ class CustomPostTypeAPI{
             'show_in_rest'=> true,
             'single'=>true,
             'sanitize_callback'=>'sanitize_text_field'
-        ])
+        ]);
 
     }
     
