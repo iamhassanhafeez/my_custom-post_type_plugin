@@ -33,6 +33,15 @@ class CustomPostTypeAPI{
 
         register_post_type('books', $args);
 
+
+        //Register custom fields
+        register_post_meta('book', 'book_author', [
+            'type'=>'string',
+            'show_in_rest'=> true,
+            'single'=>true,
+            'sanitize_callback'=>'sanitize_text_field'
+        ])
+
     }
     
     public function my_rewrite_flush() {
