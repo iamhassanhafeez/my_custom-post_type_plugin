@@ -2,11 +2,11 @@
 class CustomPostTypeAPI{
     public function __construct(){
         add_action('init', [$this, 'register_custom_post_type']);
-        register_activation_hook( __FILE__, [$this,'my_rewrite_flush'] );
+       // register_activation_hook( __FILE__, [$this,'my_rewrite_flush'] );
 
     }
     public function register_custom_post_type(){
-        echo "Plugin initialized";
+      //  echo "Plugin initialized";
         $labels = [
             'name'=>'Books',
             'singular_name'=>'Book',
@@ -28,7 +28,7 @@ class CustomPostTypeAPI{
             'show_in_rest'=>true,
             'rest_base'=>'books',
             'menu_icon'=>'dashicons-book',
-            'rewrite'=>array('slug'=>'book')
+           // 'rewrite'=>array('slug'=>'book')
         ];
 
         register_post_type('books', $args);
@@ -39,14 +39,21 @@ class CustomPostTypeAPI{
             'type'=>'string',
             'show_in_rest'=> true,
             'single'=>true,
-            'sanitize_callback'=>'sanitize_text_field'
+            'sanitize_callback'=>'sanitize_text_field',
+            'auth_callback'     => function() { return current_user_can('edit_posts'); },
+
+
         ]);
 
-    }
-    
-    public function my_rewrite_flush() {
-        register_custom_post_type();
-        flush_rewrite_rules();
+        register_post_meta('book', 'published_year', [
+            'type'=>'string',
+            'show_in_rest'=>true,
+            'single'=>true,
+            'sanitize_callback'=>'snaitize_text_field',
+            'auth_callback'     => function() { return current_user_can('edit_posts'); },
+
+        ]);
+
     }
 
 }
